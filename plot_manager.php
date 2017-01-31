@@ -14,12 +14,15 @@
 		$loader->init();
 	}
 
+
 	function plot_manager_post(){
-		$args = array('public'=>True, 'label'=>'Plot Manager');
+		$args = array('public'=>True, 'label'=>'Plot Manager','supports' => array (''));
 		register_post_type('plot_manager',$args);
 	}
 
 	add_action('init','plot_manager_post');
+
+	
 
 	add_filter( 'rwmb_meta_boxes', 'your_prefix_meta_boxes' );
     function your_prefix_meta_boxes( $meta_boxes ) {
@@ -42,13 +45,9 @@
                     'id'   => 'status',
                     'name' => __( 'Status', 'textdomain' ),
                     'type' => 'select',
-                    'options' => array('Developed','Not Developed'),
+                    'options' => array('developed'=>'Developed','not_developed'=>'Not Developed'),
                 ),
-                array(
-                	'id' => 'button',
-                	'name' => ('Submit'),
-                	'type' => 'button',
-                ),
+                
             ),
         );
         return $meta_boxes;
